@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ASCII"?>
+<art:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:art="http://art" xmlns:implem="http://art/implem" xmlns:instance="http://art/instance" xmlns:type="http://art/type" name="LMS">
+  <root name="LMS_application" type="//@types.0" state="ON">
+    <subComponent xsi:type="instance:PrimitiveInstance" name="BookResource" type="//@types.0" state="ON">
+      <implem xsi:type="implem:OSGiComponent" implementingClass="lms.proxy.resource.book.BookResource"/>
+    </subComponent>
+    <subComponent xsi:type="instance:PrimitiveInstance" name="BorrowerAccountResource" type="//@types.1" state="ON">
+      <implem xsi:type="implem:OSGiComponent" implementingClass="lms.proxy.resource.borroweraccount.BorrowerAccountResource"/>
+    </subComponent>
+    <subComponent xsi:type="instance:PrimitiveInstance" name="PersonnelAccountResource" type="//@types.2" state="ON">
+      <implem xsi:type="implem:OSGiComponent" implementingClass="lms.proxy.resource.personnelaccount.PersonnelAccountResource"/>
+    </subComponent>
+  </root>
+  <services xsi:type="type:FunctionalService" name="IconsultBorrowerAccount">
+    <operation name="consultBorrowerAccount">
+      <input name="lms.bo.user.User borrower"/>
+      <input name="borrower"/>
+      <output name="lms.bo.user.BorrowerAccount"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IcreateBorrowerAccount">
+    <operation name="createBorrowerAccount">
+      <input name="lms.bo.user.User borrower, lms.bo.user.BorrowerAccount borrowerAccount"/>
+      <input name="borrower, borrowerAccount"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IdeleteBorrowerAccount">
+    <operation name="deleteBorrowerAccount">
+      <input name="lms.bo.user.BorrowerAccount borrowerAccount"/>
+      <input name="borrowerAccount"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IupdateBorrowerAccount">
+    <operation name="updateBorrowerAccount">
+      <input name="lms.bo.user.User borrower, lms.bo.user.BorrowerAccount borrowerAccount"/>
+      <input name="borrower, borrowerAccount"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IborrowBook">
+    <operation name="borrowBook">
+      <input name="lms.bo.user.User user, lms.bo.book.Book book"/>
+      <input name="user, book"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IreserveBook">
+    <operation name="reserveBook">
+      <input name="lms.bo.user.User user, lms.bo.book.Book book"/>
+      <input name="user, book"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IreturnBook">
+    <operation name="returnBook">
+      <input name="lms.bo.user.User user, lms.bo.book.Book book"/>
+      <input name="user, book"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IfixBook">
+    <operation name="fixBook">
+      <input name="lms.bo.user.User user, lms.bo.book.Book book"/>
+      <input name="user, book"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IbookDamaged">
+    <operation name="bookDamaged">
+      <input name="lms.bo.user.User user, lms.bo.book.Book book"/>
+      <input name="user, book"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IbookRepaired">
+    <operation name="bookRepaired">
+      <input name="lms.bo.user.User user, lms.bo.book.Book book"/>
+      <input name="user, book"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IdeliverBook">
+    <operation name="deliverBook">
+      <input name="lms.bo.user.User user, lms.bo.book.Book book"/>
+      <input name="user, book"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IfindBookByState">
+    <operation name="findBookByState">
+      <input name="String state"/>
+      <input name="state"/>
+      <output name="Collection&lt;lms.bo.book.Book>"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IfindBookByKeyword">
+    <operation name="findBookByKeyword">
+      <input name="String keyword"/>
+      <input name="keyword"/>
+      <output name="Collection&lt;lms.bo.book.Book>"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IcreatePersonnelAccount">
+    <operation name="createPersonnelAccount">
+      <input name="lms.bo.user.User personnel, lms.bo.user.PersonnelAccount personnelAccount"/>
+      <input name="personnel, personnelAccount"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IupdatePersonnelAccount">
+    <operation name="updatePersonnelAccount">
+      <input name="lms.bo.user.User personnel, lms.bo.user.PersonnelAccount personnelAccount"/>
+      <input name="personnel, personnelAccount"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IdeletePersonnelAccount">
+    <operation name="deletePersonnelAccount">
+      <input name="lms.bo.user.PersonnelAccount personnelAccount"/>
+      <input name="personnelAccount"/>
+    </operation>
+  </services>
+  <services xsi:type="type:FunctionalService" name="IconsultPersonnelAccount">
+    <operation name="consultPersonnelAccount">
+      <input name="lms.bo.user.User personnel"/>
+      <input name="personnel"/>
+      <output name="lms.bo.user.PersonnelAccount"/>
+    </operation>
+  </services>
+  <types xsi:type="type:PrimitiveType" name="BookResource">
+    <port xsi:type="type:Port" name="borrowBook" lower="0" upper="-1" service="//@services.4" role="server"/>
+    <port xsi:type="type:Port" name="reserveBook" lower="0" upper="-1" service="//@services.5" role="server"/>
+    <port xsi:type="type:Port" name="returnBook" lower="0" upper="-1" service="//@services.6" role="server"/>
+    <port xsi:type="type:Port" name="fixBook" lower="0" upper="-1" service="//@services.7" role="server"/>
+    <port xsi:type="type:Port" name="bookDamaged" lower="0" upper="-1" service="//@services.8" role="server"/>
+    <port xsi:type="type:Port" name="bookRepaired" lower="0" upper="-1" service="//@services.9" role="server"/>
+    <port xsi:type="type:Port" name="deliverBook" lower="0" upper="-1" service="//@services.10" role="server"/>
+    <port xsi:type="type:Port" name="findBookByState" lower="0" upper="-1" service="//@services.11" role="server"/>
+    <port xsi:type="type:Port" name="findBookByKeyword" lower="0" upper="-1" service="//@services.12" role="server"/>
+  </types>
+  <types xsi:type="type:PrimitiveType" name="BorrowerAccountResource">
+    <port xsi:type="type:Port" name="createBorrowerAccount" lower="0" upper="-1" service="//@services.1" role="server"/>
+    <port xsi:type="type:Port" name="updateBorrowerAccount" lower="0" upper="-1" service="//@services.3" role="server"/>
+    <port xsi:type="type:Port" name="deleteBorrowerAccount" lower="0" upper="-1" service="//@services.2" role="server"/>
+    <port xsi:type="type:Port" name="consultBorrowerAccount" lower="0" upper="-1" service="//@services.0" role="server"/>
+  </types>
+  <types xsi:type="type:PrimitiveType" name="PersonnelAccountResource">
+    <port xsi:type="type:Port" name="createPersonnelAccount" lower="0" upper="-1" service="//@services.13" role="server"/>
+    <port xsi:type="type:Port" name="updatePersonnelAccount" lower="0" upper="-1" service="//@services.14" role="server"/>
+    <port xsi:type="type:Port" name="deletePersonnelAccount" lower="0" upper="-1" service="//@services.15" role="server"/>
+    <port xsi:type="type:Port" name="consultPersonnelAccount" lower="0" upper="-1" service="//@services.16" role="server"/>
+  </types>
+</art:System>

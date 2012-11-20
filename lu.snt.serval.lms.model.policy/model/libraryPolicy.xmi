@@ -1,0 +1,61 @@
+<acon:Policy xmlns:acon="http://acon/1.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.0" xsi:schemaLocation="http://acon/1.0 ../metamodel/ACON.ecore">
+    <roles name="DIRECTOR" isDelegable="true"/>
+    <roles name="SECRETARY" isDelegable="true"/>
+    <roles name="ADMIN" isDelegable="false"/>
+    <roles name="LIBRARIAN" isDelegable="true"/>
+    <roles name="LECTURER" isDelegable="true"/>
+    <roles name="STUDENT" isDelegable="true"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.1" role="//@roles.5" actions="//@resources.0/@actions.8 //@resources.0/@actions.2 //@resources.0/@actions.1 //@resources.0/@actions.0" name="STUDENT_WorkingDays"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.0" role="//@roles.5" actions="//@resources.0/@actions.2 //@resources.0/@actions.1" name="STUDENT_Holidays"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.0" role="//@roles.3" name="Student_Holidays" actions="//@resources.0/@actions.7"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.1" role="//@roles.0" name="Admin_Working_Days" actions="//@resources.1/@actions.3 //@resources.1/@actions.2 //@resources.1/@actions.1 //@resources.1/@actions.0 //@resources.2/@actions.3"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.0" role="//@roles.0" name="Admin_Holidays" actions="//@resources.2/@actions.3"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.2" role="//@roles.0" name="Admin_Maintenance_Day" actions="//@resources.2/@actions.3 //@resources.1/@actions.0"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.1" role="//@roles.1" name="Secretary_Working_Days" actions="//@resources.1/@actions.3 //@resources.1/@actions.2 //@resources.1/@actions.1 //@resources.0/@actions.4 //@resources.1/@actions.0"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.0" role="//@roles.1" actions="//@resources.1/@actions.0" name="Secretary_Holidays"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.2" role="//@roles.1" name="Secretary_Maintenance_Day" actions="//@resources.1/@actions.0"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.1" role="//@roles.2" actions="//@resources.2/@actions.2 //@resources.2/@actions.1 //@resources.2/@actions.0 //@resources.2/@actions.3" name="Director_Working_Days"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.0" role="//@roles.2" actions="//@resources.2/@actions.3" name="Director_Holidays"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.2" role="//@roles.2" actions="//@resources.2/@actions.2 //@resources.2/@actions.1 //@resources.2/@actions.0 //@resources.1/@actions.3 //@resources.1/@actions.2 //@resources.1/@actions.1 //@resources.1/@actions.0 //@resources.2/@actions.3" name="Director_Maintenance_Day"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.1" role="//@roles.3" actions="//@resources.0/@actions.7 //@resources.1/@actions.0 //@resources.0/@actions.6 //@resources.0/@actions.5" name="Student_Working_Day"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.2" role="//@roles.3" name="Student_Maintenance_Day" actions="//@resources.0/@actions.3"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.1" role="//@roles.4" actions="//@resources.0/@actions.0 //@resources.0/@actions.1 //@resources.0/@actions.2" name="Teacher_Working_Day"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.0" role="//@roles.4" actions="//@resources.0/@actions.1 //@resources.0/@actions.2" name="Teacher_Holiday"/>
+    <rules xsi:type="acon:Permission" context="//@contexts.2" role="//@roles.4" name="Teacher_Maintenance_Day"/>
+    <rules xsi:type="acon:RoleDelegation" context="//@contexts.1" delegator="//@users.0" delegatee="//@users.1" isMonotonic="false" isActive="true">
+        <duration startDate="2012-03-13T00:00:00.000+0100" endDate="2012-03-17T00:00:00.000+0100"/>
+    </rules>
+    <rules xsi:type="acon:RoleDelegation" context="//@contexts.2" delegator="//@users.0" delegatee="//@users.1" isMonotonic="false" isActive="true">
+        <duration startDate="2012-03-13T00:00:00.000+0100" endDate="2012-03-17T00:00:00.000+0100"/>
+    </rules>
+    <rules xsi:type="acon:RoleDelegation" context="//@contexts.0" delegator="//@users.1" delegatee="//@users.2" isMonotonic="false" isActive="true"/>
+    <resources name="BookResource">
+        <actions name="borrowBook"/>
+        <actions name="reserveBook"/>
+        <actions name="returnBook"/>
+        <actions name="fixBook"/>
+        <actions name="deliverBook"/>
+        <actions name="bookDamaged"/>
+        <actions name="bookRepaired"/>
+        <actions name="findBookByState"/>
+        <actions name="findBookByKeyword"/>
+    </resources>
+    <resources name="BorrowerAccountResource">
+        <actions name="consultBorrowerAccount"/>
+        <actions name="createBorrowerAccount"/>
+        <actions name="updateBorrowerAccount"/>
+        <actions name="deleteBorrowerAccount"/>
+    </resources>
+    <resources name="PersonnelAccountResource">
+        <actions name="createPersonnelAccount"/>
+        <actions name="updatePersonnelAccount"/>
+        <actions name="deletePersonnelAccount"/>
+        <actions name="consultPersonnelAccount"/>
+    </resources>
+    <users role="//@roles.0" username="bill"/>
+    <users role="//@roles.1" username="bob"/>
+    <users role="//@roles.2" username="sam"/>
+    <contexts name="Holidays" isActive="false"/>
+    <contexts name="WorkingDays" isActive="true"/>
+    <contexts name="MaintenanceDay" isActive="false"/>
+</acon:Policy>
