@@ -1,20 +1,11 @@
-package lu.snt.serval.lms.proxy.resource;/*
-* Author : Phu H. Nguyen (developer.name@uni.lu)
-* Date : 20/11/12
-* (c) 2012 University of Luxembourg – Interdisciplinary Centre for Security Reliability and Trust (SnT)
-* All rights reserved
-*/
+package lu.snt.serval.lms.cmp.role;
 
 import lu.snt.serval.lms.bo.user.PersonnelAccount;
 import lu.snt.serval.lms.bo.user.User;
-import lu.snt.serval.lms.proxy.interfaces.IconsultPersonnelAccount;
-import lu.snt.serval.lms.proxy.interfaces.IcreatePersonnelAccount;
-import lu.snt.serval.lms.proxy.interfaces.IdeletePersonnelAccount;
-import lu.snt.serval.lms.proxy.interfaces.IupdatePersonnelAccount;
+import lu.snt.serval.lms.proxy.interfaces.*;
 import lu.snt.serval.lms.service.exception.BSException;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
-
 
 @Requires({
         @RequiredPort(name = "consultPersonnelAccountOut", type = PortType.SERVICE, className = IconsultPersonnelAccount.class, optional = true),
@@ -29,13 +20,16 @@ import org.kevoree.framework.AbstractComponentType;
         @ProvidedPort(name="deletePersonnelAccountIn", type = PortType.SERVICE, className = IdeletePersonnelAccount.class),
         @ProvidedPort(name="updatePersonnelAccountIn", type = PortType.SERVICE, className = IupdatePersonnelAccount.class)
 })
+
 @ComponentType
 @Library(name = "Serval - LMS")
-public class PersonnelAccountProxyComponent extends AbstractComponentType implements
-        IconsultPersonnelAccount,
-        IcreatePersonnelAccount,
-        IdeletePersonnelAccount,
-        IupdatePersonnelAccount {
+class AdminRoleProxy extends AbstractComponentType implements IdeletePersonnelAccount,
+
+IupdatePersonnelAccount,
+
+IcreatePersonnelAccount,
+
+IconsultPersonnelAccount, IFake {
 
     @Start
     public void start() {
@@ -56,7 +50,7 @@ public class PersonnelAccountProxyComponent extends AbstractComponentType implem
     @Override
     @Port(name = "createPersonnelAccountIn", method = "createPersonnelAccount")
     public void createPersonnelAccount(User Personnel,
-                                      PersonnelAccount PersonnelAccount) throws BSException {
+                                       PersonnelAccount PersonnelAccount) throws BSException {
         IcreatePersonnelAccount createPersonnelAccountPort = getPortByName("createPersonnelAccountOut",IcreatePersonnelAccount.class);
         createPersonnelAccountPort.createPersonnelAccount(Personnel, PersonnelAccount);
     }
@@ -72,7 +66,7 @@ public class PersonnelAccountProxyComponent extends AbstractComponentType implem
     @Override
     @Port(name = "updatePersonnelAccountIn", method = "updatePersonnelAccount")
     public void updatePersonnelAccount(User Personnel,
-                                      PersonnelAccount PersonnelAccount) throws BSException {
+                                       PersonnelAccount PersonnelAccount) throws BSException {
         IupdatePersonnelAccount updatePersonnelAccountPort = getPortByName("updatePersonnelAccountOut",IupdatePersonnelAccount.class);
         updatePersonnelAccountPort.updatePersonnelAccount(Personnel, PersonnelAccount);
     }

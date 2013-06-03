@@ -6,29 +6,28 @@ import lu.snt.serval.lms.bo.user.User;
 import lu.snt.serval.lms.dao.dto.BookDTO;
 import lu.snt.serval.lms.dao.dto.UserDTO;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 
 
-@Entity
-@Table(name="books")
+//@Entity
+//@Table(name="books")
 public class Book {
-	@Id
-    @GeneratedValue
+//	@Id
+//    @GeneratedValue
     protected int bookId;
 
-	@Column
+//	@Column
     private String title;
-	@Column
+//	@Column
     protected String author;
-	@Column
+//	@Column
     protected int NbPages;
-	@Column
+//	@Column
     protected int PublicationYear;
-	@Column
+//	@Column
     protected boolean damaged;
 
 

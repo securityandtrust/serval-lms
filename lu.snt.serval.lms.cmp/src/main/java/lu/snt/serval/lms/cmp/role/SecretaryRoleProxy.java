@@ -1,8 +1,7 @@
-package lu.snt.serval.lms.proxy.user;
+package lu.snt.serval.lms.cmp.role;
 
 import lu.snt.serval.lms.bo.book.Book;
 import lu.snt.serval.lms.bo.user.BorrowerAccount;
-import lu.snt.serval.lms.bo.user.PersonnelAccount;
 import lu.snt.serval.lms.bo.user.User;
 import lu.snt.serval.lms.proxy.interfaces.*;
 import lu.snt.serval.lms.service.exception.BSException;
@@ -10,7 +9,6 @@ import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 
 @Requires({
-        @RequiredPort(name = "consultPersonnelAccountOut", type = PortType.SERVICE, className = IconsultPersonnelAccount.class, optional = true),
         @RequiredPort(name="deliverBookOut", type = PortType.SERVICE, className = IdeliverBook.class, optional = true),
         @RequiredPort(name="consultBorrowerAccountOut", type = PortType.SERVICE, className = IconsultBorrowerAccount.class, optional = true),
         @RequiredPort(name="createBorrowerAccountOut", type = PortType.SERVICE, className = IcreateBorrowerAccount.class, optional = true),
@@ -19,8 +17,7 @@ import org.kevoree.framework.AbstractComponentType;
 })
 
 @Provides({
-        @ProvidedPort(name = "consultPersonnelAccountIn", type = PortType.SERVICE, className = IconsultPersonnelAccount.class),
-        @ProvidedPort(name="deliverBook", type = PortType.SERVICE, className = IdeliverBook.class),
+        @ProvidedPort(name="deliverBookIn", type = PortType.SERVICE, className = IdeliverBook.class),
         @ProvidedPort(name="consultBorrowerAccountIn", type = PortType.SERVICE, className = IconsultBorrowerAccount.class),
         @ProvidedPort(name="createBorrowerAccountIn", type = PortType.SERVICE, className = IcreateBorrowerAccount.class),
         @ProvidedPort(name="deleteBorrowerAccountIn", type = PortType.SERVICE, className = IdeleteBorrowerAccount.class),
@@ -29,7 +26,7 @@ import org.kevoree.framework.AbstractComponentType;
 
 @ComponentType
 @Library(name = "Serval - LMS")
-class BobUserProxy extends AbstractComponentType implements IdeleteBorrowerAccount,
+class SecretaryRoleProxy extends AbstractComponentType implements IdeleteBorrowerAccount,
 
         IupdateBorrowerAccount,
 
@@ -37,9 +34,7 @@ class BobUserProxy extends AbstractComponentType implements IdeleteBorrowerAccou
 
         IdeliverBook,
 
-        IconsultBorrowerAccount,
-
-        IconsultPersonnelAccount, IFake {
+        IconsultBorrowerAccount, IFake {
 
     @Start
     public void start() {
@@ -90,16 +85,9 @@ class BobUserProxy extends AbstractComponentType implements IdeleteBorrowerAccou
 
     @Override
     @Port(name = "deliverBookIn", method = "deliverBook")
-    public void deliverBook(User user, Book book) throws BSException {
+    public void deliverBook(lu.snt.serval.lms.bo.user.User user, Book book) throws BSException {
         IdeliverBook deliverBookPort = getPortByName("deliverBookOut",IdeliverBook.class);
         deliverBookPort.deliverBook(user, book);
-    }
-
-    @Override
-    @Port(name = "consultPersonnelAccountIn", method = "consultPersonnelAccount")
-    public PersonnelAccount consultPersonnelAccount(User Personnel) throws BSException {
-        IconsultPersonnelAccount consultPersonnelAccountPort = getPortByName("consultPersonnelAccountOut",IconsultPersonnelAccount.class);
-        return consultPersonnelAccountPort.consultPersonnelAccount(Personnel);
     }
 
     /* End of generated code. You can now implement the business logic of the component

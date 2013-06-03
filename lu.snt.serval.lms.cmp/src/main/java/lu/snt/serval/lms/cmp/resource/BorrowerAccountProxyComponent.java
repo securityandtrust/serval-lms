@@ -1,6 +1,10 @@
-package lu.snt.serval.lms.proxy.role;
+package lu.snt.serval.lms.cmp.resource;/*
+* Author : Phu H. Nguyen (developer.name@uni.lu)
+* Date : 20/11/12
+* (c) 2012 University of Luxembourg – Interdisciplinary Centre for Security Reliability and Trust (SnT)
+* All rights reserved
+*/
 
-import lu.snt.serval.lms.bo.book.Book;
 import lu.snt.serval.lms.bo.user.BorrowerAccount;
 import lu.snt.serval.lms.bo.user.User;
 import lu.snt.serval.lms.proxy.interfaces.*;
@@ -8,47 +12,41 @@ import lu.snt.serval.lms.service.exception.BSException;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 
+
 @Requires({
-        @RequiredPort(name="deliverBookOut", type = PortType.SERVICE, className = IdeliverBook.class, optional = true),
-        @RequiredPort(name="consultBorrowerAccountOut", type = PortType.SERVICE, className = IconsultBorrowerAccount.class, optional = true),
+        @RequiredPort(name = "consultBorrowerAccountOut", type = PortType.SERVICE, className = IconsultBorrowerAccount.class, optional = true),
         @RequiredPort(name="createBorrowerAccountOut", type = PortType.SERVICE, className = IcreateBorrowerAccount.class, optional = true),
         @RequiredPort(name="deleteBorrowerAccountOut", type = PortType.SERVICE, className = IdeleteBorrowerAccount.class, optional = true),
         @RequiredPort(name="updateBorrowerAccountOut", type = PortType.SERVICE, className = IupdateBorrowerAccount.class, optional = true)
 })
 
 @Provides({
-        @ProvidedPort(name="deliverBook", type = PortType.SERVICE, className = IdeliverBook.class),
-        @ProvidedPort(name="consultBorrowerAccountIn", type = PortType.SERVICE, className = IconsultBorrowerAccount.class),
+        @ProvidedPort(name = "consultBorrowerAccountIn", type = PortType.SERVICE, className = IconsultBorrowerAccount.class),
         @ProvidedPort(name="createBorrowerAccountIn", type = PortType.SERVICE, className = IcreateBorrowerAccount.class),
         @ProvidedPort(name="deleteBorrowerAccountIn", type = PortType.SERVICE, className = IdeleteBorrowerAccount.class),
         @ProvidedPort(name="updateBorrowerAccountIn", type = PortType.SERVICE, className = IupdateBorrowerAccount.class)
 })
-
 @ComponentType
 @Library(name = "Serval - LMS")
-class SecretaryRoleProxy extends AbstractComponentType implements IdeleteBorrowerAccount,
-
-        IupdateBorrowerAccount,
-
+public class BorrowerAccountProxyComponent extends AbstractComponentType implements
+        IconsultBorrowerAccount,
         IcreateBorrowerAccount,
-
-        IdeliverBook,
-
-        IconsultBorrowerAccount, IFake {
+        IdeleteBorrowerAccount,
+        IupdateBorrowerAccount {
 
     @Start
     public void start() {
-        System.out.println("SecretaryRoleProxy:: start");
+        System.out.println("BorrowerAccountProxyComponent:: start");
     }
 
     @Stop
     public void stop() {
-        System.out.println("SecretaryRoleProxy:: stop");
+        System.out.println("BorrowerAccountProxyComponent:: stop");
     }
 
     @Update
     public void update() {
-        System.out.println("SecretaryRoleProxy:: update");
+        System.out.println("BorrowerAccountProxyComponent:: update");
     }
 
 
@@ -83,14 +81,8 @@ class SecretaryRoleProxy extends AbstractComponentType implements IdeleteBorrowe
         return consultBorrowerAccountPort.consultBorrowerAccount(borrower);
     }
 
-    @Override
-    @Port(name = "deliverBookIn", method = "deliverBook")
-    public void deliverBook(lu.snt.serval.lms.bo.user.User user, Book book) throws BSException {
-        IdeliverBook deliverBookPort = getPortByName("deliverBookOut",IdeliverBook.class);
-        deliverBookPort.deliverBook(user, book);
-    }
-
     /* End of generated code. You can now implement the business logic of the component
       * (Quick Fix: Add Unimplemented Method)
       */
+
 }

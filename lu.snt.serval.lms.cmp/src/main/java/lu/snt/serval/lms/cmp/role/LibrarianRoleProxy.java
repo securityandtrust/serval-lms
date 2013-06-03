@@ -1,4 +1,4 @@
-package lu.snt.serval.lms.proxy.role;
+package lu.snt.serval.lms.cmp.role;
 
 import lu.snt.serval.lms.bo.book.Book;
 import lu.snt.serval.lms.bo.user.BorrowerAccount;
@@ -18,9 +18,9 @@ import java.util.Collection;
 })
 
 @Provides({
-        @ProvidedPort(name="bookDamaged", type = PortType.SERVICE, className = IbookDamaged.class),
-        @ProvidedPort(name="bookRepaired", type = PortType.SERVICE, className = IbookRepaired.class),
-        @ProvidedPort(name="findBookByState", type = PortType.SERVICE, className = IfindBookByState.class),
+        @ProvidedPort(name="bookDamagedIn", type = PortType.SERVICE, className = IbookDamaged.class),
+        @ProvidedPort(name="bookRepairedIn", type = PortType.SERVICE, className = IbookRepaired.class),
+        @ProvidedPort(name="findBookByStateIn", type = PortType.SERVICE, className = IfindBookByState.class),
         @ProvidedPort(name="consultBorrowerAccountIn", type = PortType.SERVICE, className = IconsultBorrowerAccount.class)
 })
 

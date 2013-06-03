@@ -1,10 +1,9 @@
-package lu.snt.serval.lms.proxy.resource;/*
+package lu.snt.serval.lms.cmp.resource;/*
 * Author : Phu H. Nguyen (developer.name@uni.lu)
 * Date : 20/11/12
 * (c) 2012 University of Luxembourg – Interdisciplinary Centre for Security Reliability and Trust (SnT)
 * All rights reserved
 */
-
 import lu.snt.serval.lms.bo.book.Book;
 import lu.snt.serval.lms.proxy.interfaces.*;
 import lu.snt.serval.lms.service.exception.BSException;
@@ -28,14 +27,14 @@ import java.util.Collection;
 
 @Provides({
         @ProvidedPort(name="borrowBookIn", type = PortType.SERVICE, className = IborrowBook.class),
-        @ProvidedPort(name="reserveBook", type = PortType.SERVICE, className = IreserveBook.class),
-        @ProvidedPort(name="returnBook", type = PortType.SERVICE, className = IreturnBook.class),
-        @ProvidedPort(name="fixBook", type = PortType.SERVICE, className = IfixBook.class),
-        @ProvidedPort(name="bookDamaged", type = PortType.SERVICE, className = IbookDamaged.class),
-        @ProvidedPort(name="bookRepaired", type = PortType.SERVICE, className = IbookRepaired.class),
-        @ProvidedPort(name="deliverBook", type = PortType.SERVICE, className = IdeliverBook.class),
-        @ProvidedPort(name="findBookByState", type = PortType.SERVICE, className = IfindBookByState.class),
-        @ProvidedPort(name="findBookByKeyword", type = PortType.SERVICE, className = IfindBookByKeyword.class)
+        @ProvidedPort(name="reserveBookIn", type = PortType.SERVICE, className = IreserveBook.class),
+        @ProvidedPort(name="returnBookIn", type = PortType.SERVICE, className = IreturnBook.class),
+        @ProvidedPort(name="fixBookIn", type = PortType.SERVICE, className = IfixBook.class),
+        @ProvidedPort(name="bookDamagedIn", type = PortType.SERVICE, className = IbookDamaged.class),
+        @ProvidedPort(name="bookRepairedIn", type = PortType.SERVICE, className = IbookRepaired.class),
+        @ProvidedPort(name="deliverBookIn", type = PortType.SERVICE, className = IdeliverBook.class),
+        @ProvidedPort(name="findBookByStateIn", type = PortType.SERVICE, className = IfindBookByState.class),
+        @ProvidedPort(name="findBookByKeywordIn", type = PortType.SERVICE, className = IfindBookByKeyword.class)
 })
 @ComponentType
 @Library(name = "Serval - LMS")
@@ -131,7 +130,7 @@ public class BookProxyComponent extends AbstractComponentType implements Iborrow
 
     @Override
     @Port(name = "findBookByKeywordIn", method = "findBookByKeyword")
-    public Collection<Book> findBookByKeyword(String keyword)
+    public java.util.Collection<Book> findBookByKeyword(String keyword)
             throws BSException {
         IfindBookByKeyword findBookByKeywordPort = getPortByName("findBookByKeywordOut",IfindBookByKeyword.class);
         return findBookByKeywordPort.findBookByKeyword(keyword);

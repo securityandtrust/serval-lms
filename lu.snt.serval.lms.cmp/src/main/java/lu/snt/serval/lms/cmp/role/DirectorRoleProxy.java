@@ -1,19 +1,15 @@
-package lu.snt.serval.lms.proxy.resource;/*
-* Author : Phu H. Nguyen (developer.name@uni.lu)
-* Date : 20/11/12
-* (c) 2012 University of Luxembourg – Interdisciplinary Centre for Security Reliability and Trust (SnT)
-* All rights reserved
-*/
+package lu.snt.serval.lms.cmp.role;
 
 import lu.snt.serval.lms.bo.user.BorrowerAccount;
+import lu.snt.serval.lms.bo.user.PersonnelAccount;
 import lu.snt.serval.lms.bo.user.User;
 import lu.snt.serval.lms.proxy.interfaces.*;
 import lu.snt.serval.lms.service.exception.BSException;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 
-
 @Requires({
+        @RequiredPort(name = "consultPersonnelAccountOut", type = PortType.SERVICE, className = IconsultPersonnelAccount.class, optional = true),
         @RequiredPort(name = "consultBorrowerAccountOut", type = PortType.SERVICE, className = IconsultBorrowerAccount.class, optional = true),
         @RequiredPort(name="createBorrowerAccountOut", type = PortType.SERVICE, className = IcreateBorrowerAccount.class, optional = true),
         @RequiredPort(name="deleteBorrowerAccountOut", type = PortType.SERVICE, className = IdeleteBorrowerAccount.class, optional = true),
@@ -21,32 +17,38 @@ import org.kevoree.framework.AbstractComponentType;
 })
 
 @Provides({
+        @ProvidedPort(name = "consultPersonnelAccountIn", type = PortType.SERVICE, className = IconsultPersonnelAccount.class),
         @ProvidedPort(name = "consultBorrowerAccountIn", type = PortType.SERVICE, className = IconsultBorrowerAccount.class),
         @ProvidedPort(name="createBorrowerAccountIn", type = PortType.SERVICE, className = IcreateBorrowerAccount.class),
         @ProvidedPort(name="deleteBorrowerAccountIn", type = PortType.SERVICE, className = IdeleteBorrowerAccount.class),
         @ProvidedPort(name="updateBorrowerAccountIn", type = PortType.SERVICE, className = IupdateBorrowerAccount.class)
 })
+
 @ComponentType
 @Library(name = "Serval - LMS")
-public class BorrowerAccountProxyComponent extends AbstractComponentType implements
-        IconsultBorrowerAccount,
+class DirectorRoleProxy extends AbstractComponentType implements IdeleteBorrowerAccount,
+
+        IupdateBorrowerAccount,
+
         IcreateBorrowerAccount,
-        IdeleteBorrowerAccount,
-        IupdateBorrowerAccount {
+
+        IconsultBorrowerAccount,
+
+        IconsultPersonnelAccount, IFake {
 
     @Start
     public void start() {
-        System.out.println("BorrowerAccountProxyComponent:: start");
+        System.out.println("DirectorRoleProxy:: start");
     }
 
     @Stop
     public void stop() {
-        System.out.println("BorrowerAccountProxyComponent:: stop");
+        System.out.println("DirectorRoleProxy:: stop");
     }
 
     @Update
     public void update() {
-        System.out.println("BorrowerAccountProxyComponent:: update");
+        System.out.println("DirectorRoleProxy:: update");
     }
 
 
@@ -81,8 +83,14 @@ public class BorrowerAccountProxyComponent extends AbstractComponentType impleme
         return consultBorrowerAccountPort.consultBorrowerAccount(borrower);
     }
 
+    @Override
+    @Port(name = "consultPersonnelAccountIn", method = "consultPersonnelAccount")
+    public PersonnelAccount consultPersonnelAccount(User Personnel) throws BSException {
+        IconsultPersonnelAccount consultPersonnelAccountPort = getPortByName("consultPersonnelAccountOut",IconsultPersonnelAccount.class);
+        return consultPersonnelAccountPort.consultPersonnelAccount(Personnel);
+    }
+
     /* End of generated code. You can now implement the business logic of the component
       * (Quick Fix: Add Unimplemented Method)
       */
-
 }

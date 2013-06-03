@@ -39,7 +39,7 @@ public class User {
        // empty constructor
     }
 
-    public User(String login,String password,String name, String mail, String phone, Role role) {
+    public User(String login, String password, String name, String mail, String phone, Role role) {
         this.name = name;
         this.mail = mail;
         this.phone = phone;
