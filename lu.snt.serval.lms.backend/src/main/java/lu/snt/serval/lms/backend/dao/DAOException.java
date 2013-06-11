@@ -1,4 +1,4 @@
-package lu.snt.serval.lms.dao;
+package lu.snt.serval.lms.backend.dao;
 
 
 public class DAOException extends Throwable {
