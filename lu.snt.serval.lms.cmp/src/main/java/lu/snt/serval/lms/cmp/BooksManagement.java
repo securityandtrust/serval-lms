@@ -7,10 +7,6 @@ package lu.snt.serval.lms.cmp;/*
 
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.reflect.Method;
 
 @Provides({
         @ProvidedPort(name="add", type = PortType.MESSAGE),
@@ -21,8 +17,6 @@ import java.lang.reflect.Method;
 @ComponentType
 @Library(name = "Serval - LMS")
 public class BooksManagement extends AbstractComponentType {
-
-    private static Logger logger = LoggerFactory.getLogger(BooksManagement.class);
 
 
     @Start
@@ -39,22 +33,18 @@ public class BooksManagement extends AbstractComponentType {
 
     @Port(name = "add")
     public void addBook(Object o) {
-        logger.debug(Thread.currentThread().getStackTrace()[0].getMethodName());
     }
 
     @Port(name = "update")
     public void updateBook(Object o) {
-        logger.debug(Thread.currentThread().getStackTrace()[0].getMethodName());
     }
 
     @Port(name = "list")
     public void listBooks(Object o) {
-        logger.debug(Thread.currentThread().getStackTrace()[0].getMethodName());
     }
 
     @Port(name = "remove")
     public void removeBook(Object o) {
-        logger.debug(Thread.currentThread().getStackTrace()[0].getMethodName());
     }
     
 }

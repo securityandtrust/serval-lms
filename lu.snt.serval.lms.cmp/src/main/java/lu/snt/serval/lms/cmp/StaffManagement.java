@@ -8,8 +8,6 @@ package lu.snt.serval.lms.cmp;/*
 
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Provides({
         @ProvidedPort(name="add", type = PortType.MESSAGE),
@@ -21,7 +19,6 @@ import org.slf4j.LoggerFactory;
 @Library(name = "Serval - LMS")
 public class StaffManagement extends AbstractComponentType {
 
-    private static Logger logger = LoggerFactory.getLogger(StaffManagement.class);
 
     @Start
     public void start() {
@@ -38,22 +35,18 @@ public class StaffManagement extends AbstractComponentType {
 
     @Port(name = "add")
     public void addStaffMember(Object o) {
-        logger.debug(Thread.currentThread().getStackTrace()[0].getMethodName());
     }
 
     @Port(name = "update")
     public void updateStaffMember(Object o) {
-        logger.debug(Thread.currentThread().getStackTrace()[0].getMethodName());
     }
 
     @Port(name = "list")
     public void listStaffMembers(Object o) {
-        logger.debug(Thread.currentThread().getStackTrace()[0].getMethodName());
     }
 
     @Port(name = "remove")
     public void removeStaffMember(Object o) {
-        logger.debug(Thread.currentThread().getStackTrace()[0].getMethodName());
     }
 
 }

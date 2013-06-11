@@ -5,37 +5,37 @@ package lu.snt.serval.lms.cmp.resource;/*
 * All rights reserved
 */
 
-import lu.snt.serval.lms.bo.user.PersonnelAccount;
-import lu.snt.serval.lms.bo.user.User;
-import lu.snt.serval.lms.proxy.interfaces.IconsultPersonnelAccount;
-import lu.snt.serval.lms.proxy.interfaces.IcreatePersonnelAccount;
-import lu.snt.serval.lms.proxy.interfaces.IdeletePersonnelAccount;
-import lu.snt.serval.lms.proxy.interfaces.IupdatePersonnelAccount;
-import lu.snt.serval.lms.service.exception.BSException;
+import lu.snt.serval.lms.framework.exceptions.BSException;
+import lu.snt.serval.lms.framework.interfaces.IConsultPersonnelAccount;
+import lu.snt.serval.lms.framework.interfaces.ICreatePersonnelAccount;
+import lu.snt.serval.lms.framework.interfaces.IDeletePersonnelAccount;
+import lu.snt.serval.lms.framework.interfaces.IUpdatePersonnelAccount;
+import lu.snt.serval.lms.framework.user.PersonnelAccount;
+import lu.snt.serval.lms.framework.user.User;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 
 
 @Requires({
-        @RequiredPort(name = "consultPersonnelAccountOut", type = PortType.SERVICE, className = IconsultPersonnelAccount.class, optional = true),
-        @RequiredPort(name="createPersonnelAccountOut", type = PortType.SERVICE, className = IcreatePersonnelAccount.class, optional = true),
-        @RequiredPort(name="deletePersonnelAccountOut", type = PortType.SERVICE, className = IdeletePersonnelAccount.class, optional = true),
-        @RequiredPort(name="updatePersonnelAccountOut", type = PortType.SERVICE, className = IupdatePersonnelAccount.class, optional = true)
+        @RequiredPort(name = "consultPersonnelAccountOut", type = PortType.SERVICE, className = IConsultPersonnelAccount.class, optional = true),
+        @RequiredPort(name="createPersonnelAccountOut", type = PortType.SERVICE, className = ICreatePersonnelAccount.class, optional = true),
+        @RequiredPort(name="deletePersonnelAccountOut", type = PortType.SERVICE, className = IDeletePersonnelAccount.class, optional = true),
+        @RequiredPort(name="updatePersonnelAccountOut", type = PortType.SERVICE, className = IUpdatePersonnelAccount.class, optional = true)
 })
 
 @Provides({
-        @ProvidedPort(name = "consultPersonnelAccountIn", type = PortType.SERVICE, className = IconsultPersonnelAccount.class),
-        @ProvidedPort(name="createPersonnelAccountIn", type = PortType.SERVICE, className = IcreatePersonnelAccount.class),
-        @ProvidedPort(name="deletePersonnelAccountIn", type = PortType.SERVICE, className = IdeletePersonnelAccount.class),
-        @ProvidedPort(name="updatePersonnelAccountIn", type = PortType.SERVICE, className = IupdatePersonnelAccount.class)
+        @ProvidedPort(name = "consultPersonnelAccountIn", type = PortType.SERVICE, className = IConsultPersonnelAccount.class),
+        @ProvidedPort(name="createPersonnelAccountIn", type = PortType.SERVICE, className = ICreatePersonnelAccount.class),
+        @ProvidedPort(name="deletePersonnelAccountIn", type = PortType.SERVICE, className = IDeletePersonnelAccount.class),
+        @ProvidedPort(name="updatePersonnelAccountIn", type = PortType.SERVICE, className = IUpdatePersonnelAccount.class)
 })
 @ComponentType
 @Library(name = "Serval - LMS")
 public class PersonnelAccountProxyComponent extends AbstractComponentType implements
-        IconsultPersonnelAccount,
-        IcreatePersonnelAccount,
-        IdeletePersonnelAccount,
-        IupdatePersonnelAccount {
+        IConsultPersonnelAccount,
+        ICreatePersonnelAccount,
+        IDeletePersonnelAccount,
+        IUpdatePersonnelAccount {
 
     @Start
     public void start() {
@@ -57,14 +57,14 @@ public class PersonnelAccountProxyComponent extends AbstractComponentType implem
     @Port(name = "createPersonnelAccountIn", method = "createPersonnelAccount")
     public void createPersonnelAccount(User Personnel,
                                       PersonnelAccount PersonnelAccount) throws BSException {
-        IcreatePersonnelAccount createPersonnelAccountPort = getPortByName("createPersonnelAccountOut",IcreatePersonnelAccount.class);
+        ICreatePersonnelAccount createPersonnelAccountPort = getPortByName("createPersonnelAccountOut",ICreatePersonnelAccount.class);
         createPersonnelAccountPort.createPersonnelAccount(Personnel, PersonnelAccount);
     }
 
     @Override
     @Port(name = "deletePersonnelAccountIn", method = "deletePersonnelAccount")
     public void deletePersonnelAccount(PersonnelAccount PersonnelAccount) throws BSException {
-        IdeletePersonnelAccount deletePersonnelAccountPort = getPortByName("deletePersonnelAccountOut",IdeletePersonnelAccount.class);
+        IDeletePersonnelAccount deletePersonnelAccountPort = getPortByName("deletePersonnelAccountOut",IDeletePersonnelAccount.class);
         deletePersonnelAccountPort.deletePersonnelAccount(PersonnelAccount);
 
     }
@@ -73,14 +73,14 @@ public class PersonnelAccountProxyComponent extends AbstractComponentType implem
     @Port(name = "updatePersonnelAccountIn", method = "updatePersonnelAccount")
     public void updatePersonnelAccount(User Personnel,
                                       PersonnelAccount PersonnelAccount) throws BSException {
-        IupdatePersonnelAccount updatePersonnelAccountPort = getPortByName("updatePersonnelAccountOut",IupdatePersonnelAccount.class);
+        IUpdatePersonnelAccount updatePersonnelAccountPort = getPortByName("updatePersonnelAccountOut",IUpdatePersonnelAccount.class);
         updatePersonnelAccountPort.updatePersonnelAccount(Personnel, PersonnelAccount);
     }
 
     @Override
     @Port(name = "consultPersonnelAccountIn", method = "consultPersonnelAccount")
     public PersonnelAccount consultPersonnelAccount(User Personnel) throws BSException {
-        IconsultPersonnelAccount consultPersonnelAccountPort = getPortByName("consultPersonnelAccountOut",IconsultPersonnelAccount.class);
+        IConsultPersonnelAccount consultPersonnelAccountPort = getPortByName("consultPersonnelAccountOut",IConsultPersonnelAccount.class);
         return consultPersonnelAccountPort.consultPersonnelAccount(Personnel);
     }
 

@@ -1,36 +1,34 @@
 package lu.snt.serval.lms.cmp.role;
 
-import lu.snt.serval.lms.bo.book.Book;
-import lu.snt.serval.lms.proxy.interfaces.*;
-import lu.snt.serval.lms.service.exception.BSException;
+import lu.snt.serval.lms.framework.book.Book;
+import lu.snt.serval.lms.framework.exceptions.BSException;
+import lu.snt.serval.lms.framework.interfaces.IBorrowBook;
+import lu.snt.serval.lms.framework.interfaces.IFindBookByKeyword;
+import lu.snt.serval.lms.framework.interfaces.IReserveBook;
+import lu.snt.serval.lms.framework.interfaces.IReturnBook;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 
 import java.util.Collection;
 
 @Requires({
-        @RequiredPort(name = "borrowBookOut", type = PortType.SERVICE, className = IborrowBook.class, optional = true),
-        @RequiredPort(name="reserveBookOut", type = PortType.SERVICE, className = IreserveBook.class, optional = true),
-        @RequiredPort(name="returnBookOut", type = PortType.SERVICE, className = IreturnBook.class, optional = true),
-        @RequiredPort(name="findBookByKeywordOut", type = PortType.SERVICE, className = IfindBookByKeyword.class, optional = true)
+        @RequiredPort(name = "borrowBookOut", type = PortType.SERVICE, className = IBorrowBook.class, optional = true),
+        @RequiredPort(name="reserveBookOut", type = PortType.SERVICE, className = IReserveBook.class, optional = true),
+        @RequiredPort(name="returnBookOut", type = PortType.SERVICE, className = IReturnBook.class, optional = true),
+        @RequiredPort(name="findBookByKeywordOut", type = PortType.SERVICE, className = IFindBookByKeyword.class, optional = true)
 })
 
 @Provides({
-        @ProvidedPort(name="borrowBookIn", type = PortType.SERVICE, className = IborrowBook.class),
-        @ProvidedPort(name="reserveBookIn", type = PortType.SERVICE, className = IreserveBook.class),
-        @ProvidedPort(name="returnBookIn", type = PortType.SERVICE, className = IreturnBook.class),
-        @ProvidedPort(name="findBookByKeywordIn", type = PortType.SERVICE, className = IfindBookByKeyword.class)
+        @ProvidedPort(name="borrowBookIn", type = PortType.SERVICE, className = IBorrowBook.class),
+        @ProvidedPort(name="reserveBookIn", type = PortType.SERVICE, className = IReserveBook.class),
+        @ProvidedPort(name="returnBookIn", type = PortType.SERVICE, className = IReturnBook.class),
+        @ProvidedPort(name="findBookByKeywordIn", type = PortType.SERVICE, className = IFindBookByKeyword.class)
 
 })
 
 @ComponentType
 @Library(name = "Serval - LMS")
-class BorrowerRoleProxy extends AbstractComponentType implements IfindBookByKeyword,
-        IborrowBook,
-
-        IreserveBook,
-
-        IreturnBook, IFake {
+public class BorrowerRoleProxy extends AbstractComponentType implements IFindBookByKeyword, IBorrowBook, IReserveBook, IReturnBook {
 
     @Start
     public void start() {
@@ -50,22 +48,22 @@ class BorrowerRoleProxy extends AbstractComponentType implements IfindBookByKeyw
 
     @Override
     @Port(name = "borrowBookIn", method = "borrowBook")
-    public void borrowBook(lu.snt.serval.lms.bo.user.User user, Book book) throws BSException {
-        IborrowBook borrowBookPort = getPortByName("borrowBookOut",IborrowBook.class);
+    public void borrowBook(lu.snt.serval.lms.framework.user.User user, Book book) throws BSException {
+        IBorrowBook borrowBookPort = getPortByName("borrowBookOut",IBorrowBook.class);
         borrowBookPort.borrowBook(user, book);
     }
 
     @Override
     @Port(name = "reserveBookIn", method = "reserveBook")
-    public void reserveBook(lu.snt.serval.lms.bo.user.User user, Book book) throws BSException {
-        IreserveBook reserveBookPort = getPortByName("reserveBookOut",IreserveBook.class);
+    public void reserveBook(lu.snt.serval.lms.framework.user.User user, Book book) throws BSException {
+        IReserveBook reserveBookPort = getPortByName("reserveBookOut",IReserveBook.class);
         reserveBookPort.reserveBook(user, book);
     }
 
     @Override
     @Port(name = "returnBookIn", method = "returnBook")
-    public void returnBook(lu.snt.serval.lms.bo.user.User user, Book book) throws BSException {
-        IreturnBook returnBookPort = getPortByName("returnBookOut",IreturnBook.class);
+    public void returnBook(lu.snt.serval.lms.framework.user.User user, Book book) throws BSException {
+        IReturnBook returnBookPort = getPortByName("returnBookOut",IReturnBook.class);
         returnBookPort.returnBook(user, book);
     }
 
@@ -73,7 +71,7 @@ class BorrowerRoleProxy extends AbstractComponentType implements IfindBookByKeyw
     @Port(name = "findBookByKeywordIn", method = "findBookByKeyword")
     public Collection<Book> findBookByKeyword(String keyword)
             throws BSException {
-        IfindBookByKeyword findBookByKeywordPort = getPortByName("findBookByKeywordOut",IfindBookByKeyword.class);
+        IFindBookByKeyword findBookByKeywordPort = getPortByName("findBookByKeywordOut",IFindBookByKeyword.class);
         return findBookByKeywordPort.findBookByKeyword(keyword);
     }
 
