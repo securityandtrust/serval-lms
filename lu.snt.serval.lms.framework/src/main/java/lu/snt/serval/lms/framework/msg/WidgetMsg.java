@@ -5,7 +5,7 @@ package lu.snt.serval.lms.framework.msg;/*
 * All rights reserved
 */
 
-import lu.snt.serval.lms.framework.elements.Widget;
+import lu.snt.serval.lms.framework.graphics.Widget;
 
 public class WidgetMsg {
 

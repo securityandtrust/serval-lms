@@ -1,4 +1,4 @@
-package lu.snt.serval.lms.framework.elements;/*
+package lu.snt.serval.lms.framework.graphics;/*
 * Author : Gregory Nain (developer.name@uni.lu)
 * Date : 20/11/12
 * (c) 2012 University of Luxembourg – Interdisciplinary Centre for Security Reliability and Trust (SnT)
