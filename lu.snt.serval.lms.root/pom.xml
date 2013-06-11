@@ -9,13 +9,19 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>../lu.snt.serval.lms.framework</module>
+        <module>../lu.snt.serval.lms.cmp</module>
+        <!--
         <module>../lu.snt.serval.lms.model.base</module>
         <module>../lu.snt.serval.lms.model.policy</module>
-        <module>../lu.snt.serval.lms.cmp</module>
+        <module>../lu.snt.serval.lms.fontend</module>
+        <module>../lu.snt.serval.lms.backend</module>
+        -->
     </modules>
 
     <properties>
-        <kevoree.version>1.8.9-SNAPSHOT</kevoree.version>
+        <kevoree.version>2.0.0-SNAPSHOT</kevoree.version>
+        <kotlin.version>0.5.742</kotlin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 
@@ -27,9 +33,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.9.2</version>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
         </dependency>
         <dependency>
             <groupId>org.kevoree.tools</groupId>
@@ -52,34 +58,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.scala-tools</groupId>
-                <artifactId>maven-scala-plugin</artifactId>
-                <version>2.15.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jvmArgs>
-                        <jvmArg>-Xms64m</jvmArg>
-                        <jvmArg>-Xmx1024m</jvmArg>
-                    </jvmArgs>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.kevoree.tools</groupId>
                 <artifactId>org.kevoree.tools.annotation.mavenplugin</artifactId>
                 <version>${kevoree.version}</version>
@@ -96,28 +74,59 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
     <repositories>
         <repository>
-            <id>kevoree-libs-release-local</id>
+            <id>kevoree-release</id>
             <url>http://maven.kevoree.org/release</url>
         </repository>
         <repository>
-            <id>kevoree-snapshots</id>
+            <id>kevoree-snapshot</id>
             <url>http://maven.kevoree.org/snapshots</url>
         </repository>
+        <repository>
+            <id>jetbrains-release</id>
+            <url>http://repository.jetbrains.com/all</url>
+        </repository>
     </repositories>
-
     <pluginRepositories>
         <pluginRepository>
-            <id>plugin.kevoree-github</id>
+            <id>kevoree-release</id>
             <url>http://maven.kevoree.org/release</url>
         </pluginRepository>
         <pluginRepository>
-            <id>plugin.kevoree-snapshots</id>
+            <id>kevoree-snapshot</id>
             <url>http://maven.kevoree.org/snapshots</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>jetbrains-release</id>
+            <url>http://repository.jetbrains.com/all</url>
         </pluginRepository>
     </pluginRepositories>
 
