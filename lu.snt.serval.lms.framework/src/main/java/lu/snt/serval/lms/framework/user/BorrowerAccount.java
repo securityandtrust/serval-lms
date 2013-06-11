@@ -1,17 +1,13 @@
-package lu.snt.serval.lms.bo.user;
-
-
-import lu.snt.serval.lms.dao.dto.BorrowerAccountDTO;
+package lu.snt.serval.lms.framework.user;
 
 import java.util.Date;
-
 
 public class BorrowerAccount extends Account {
 
     private boolean isCanBorrow;
 
     private int borrowerAccountID;
-    
+
     private int userID;
 
     public BorrowerAccount(boolean active, boolean canBorrow) {
@@ -36,9 +32,11 @@ public class BorrowerAccount extends Account {
         isCanBorrow = true;
     }
 
-        public BorrowerAccount(BorrowerAccountDTO dto) {
-            setFromDTO(dto);
+    /*
+    public BorrowerAccount(BorrowerAccountDTO dto) {
+        setFromDTO(dto);
     }
+    */
 
     public boolean isCanBorrow() {
         return isCanBorrow;
@@ -56,9 +54,9 @@ public class BorrowerAccount extends Account {
     public void setBorrowerAccountID(int borrowerAccountID) {
         this.borrowerAccountID = borrowerAccountID;
     }
-
+/*
     public void setFromDTO(BorrowerAccountDTO dto) {
-         BorrowerAccountDTO borrowerAccountDTO;
+        BorrowerAccountDTO borrowerAccountDTO;
 
         borrowerAccountDTO = (BorrowerAccountDTO) dto;
 
@@ -69,18 +67,18 @@ public class BorrowerAccount extends Account {
 
         setUserID(borrowerAccountDTO.getId_user());
     }
-
+*/
     public int getUserID() {
-		return userID;
-	}
+        return userID;
+    }
 
 
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
-
-	public BorrowerAccountDTO getDTO() {
+/*
+    public BorrowerAccountDTO getDTO() {
         BorrowerAccountDTO borrowerAccountDTO;
 
         borrowerAccountDTO = new BorrowerAccountDTO();
@@ -94,15 +92,15 @@ public class BorrowerAccount extends Account {
         return borrowerAccountDTO;
 
     }
-
+*/
 
     public boolean equals(Object obj) {
 
         if(!(obj instanceof BorrowerAccount)) return false;
 
-        
+
         return this.getCreationDate().equals(((BorrowerAccount) obj).getCreationDate()) &&
-               isCanBorrow == ((BorrowerAccount) obj).isCanBorrow();
+                isCanBorrow == ((BorrowerAccount) obj).isCanBorrow();
 
     }
 

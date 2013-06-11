@@ -1,4 +1,6 @@
-package lu.snt.serval.lms.bo.user;
+package lu.snt.serval.lms.framework.user;
+
+import lu.snt.serval.lms.framework.interfaces.Role;
 
 /**
  * User: Tej

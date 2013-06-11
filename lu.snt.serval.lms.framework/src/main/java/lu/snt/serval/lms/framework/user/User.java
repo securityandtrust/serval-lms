@@ -1,9 +1,8 @@
-package lu.snt.serval.lms.bo.user;
+package lu.snt.serval.lms.framework.user;
 
 
-import lu.snt.serval.lms.bo.book.Book;
-import lu.snt.serval.lms.dao.dto.BookDTO;
-import lu.snt.serval.lms.dao.dto.UserDTO;
+import lu.snt.serval.lms.framework.book.Book;
+import lu.snt.serval.lms.framework.interfaces.Role;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,11 +34,8 @@ public class User {
         borrowed = new ArrayList<Book>();
     }
 
-    public User()    {
-       // empty constructor
-    }
-
     public User(String login, String password, String name, String mail, String phone, Role role) {
+        this();
         this.name = name;
         this.mail = mail;
         this.phone = phone;
@@ -48,13 +44,9 @@ public class User {
 
         this.role = role;
 
-        reservations = new ArrayList<Book>();
-        borrowed = new ArrayList<Book>();
     }
 
-    public User(UserDTO dto)    {
-        setFromDTO(dto);
-
+    public User() {
         reservations = new ArrayList<Book>();
         borrowed = new ArrayList<Book>();
     }
@@ -125,44 +117,7 @@ public class User {
     }
 
 
-    public void setFromDTO(UserDTO dto) {
 
-        UserDTO userDTO = (UserDTO) dto;
-        
-        setLogin(userDTO.getLogin());
-        setPassword(userDTO.getPassword());
-        setName(userDTO.getName());
-        setMail(userDTO.getMail());
-        setPhone(userDTO.getPhone());
-        setUserId(userDTO.getId_user());
-
-    }
-
-
-    public UserDTO getDTO() {
-        UserDTO userDTO = new UserDTO();
-
-        userDTO.setLogin(login);
-        userDTO.setPassword(password);
-        userDTO.setName(name);
-        userDTO.setMail(mail);
-        userDTO.setPhone(phone);
-        userDTO.setId_user(userId);
-
-        return userDTO;
-    }
-
-    public void setReservationsFromDTOs(Collection<BookDTO> dtos)   {
-
-        // init the reservation list
-        reservations = new ArrayList<Book>();
-
-        //creates books and put them in reservations
-        for (Iterator<BookDTO> iterator = dtos.iterator(); iterator.hasNext();) {
-           reservations.add(new Book(iterator.next()));
-        }
-
-    }
 
     public void defineRole(String role) {
 
@@ -187,17 +142,5 @@ public class User {
 
     }
 
-
-    public void setBorrowedFromDTOs(Collection<BookDTO> dtos)   {
-
-        // init the reservation list
-               borrowed = new ArrayList<Book>();
-
-               //creates books and put them in reservations
-               for (Iterator<BookDTO> iterator = dtos.iterator(); iterator.hasNext();) {
-                  borrowed.add(new Book(iterator.next()));
-               }
-
-    }
 
 }

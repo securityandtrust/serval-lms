@@ -1,15 +1,12 @@
 
-package lu.snt.serval.lms.bo.book;
+package lu.snt.serval.lms.framework.book;
 
 
-import lu.snt.serval.lms.bo.user.User;
-import lu.snt.serval.lms.dao.dto.BookDTO;
-import lu.snt.serval.lms.dao.dto.UserDTO;
+import lu.snt.serval.lms.framework.exceptions.InvalidActionException;
+import lu.snt.serval.lms.framework.user.User;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Iterator;
 
 
 //@Entity
@@ -103,14 +100,14 @@ public class Book {
         damaged = false;
         reservations = new ArrayList<User>();
     }
-
+/*
     public Book(BookDTO dto) {
 
         setFromDTO(dto);
         reservations = new ArrayList<User>();
 
     }
-
+*/
     public void execute(String cmd, User user) throws InvalidActionException {
 
         BookEvent be;
@@ -240,7 +237,7 @@ public class Book {
         this.bookId = bookId;
     }
 
-
+/*
     public void setFromDTO(BookDTO dto) {
         BookDTO bookDTO = (BookDTO) dto;
 
@@ -280,7 +277,7 @@ public class Book {
         }
 
     }
-
+*/
 
     public boolean equals(Object obj) {
         if (!(obj instanceof Book)) return false;

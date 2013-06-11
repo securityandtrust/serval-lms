@@ -1,4 +1,4 @@
-package lu.snt.serval.lms.bo.user;
+package lu.snt.serval.lms.framework.user;
 
 
 public class Librarian extends Personnel  {
