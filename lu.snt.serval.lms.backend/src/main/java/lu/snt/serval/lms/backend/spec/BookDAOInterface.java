@@ -1,8 +1,8 @@
-package lu.snt.serval.lms.dao.spec;
+package lu.snt.serval.lms.backend.spec;
 
 
-import lu.snt.serval.lms.dao.dto.BookDTO;
-import lu.snt.serval.lms.dao.dto.UserDTO;
+import lu.snt.serval.lms.backend.dto.BookDTO;
+import lu.snt.serval.lms.backend.dto.UserDTO;
 
 import java.util.Collection;
 

@@ -1,8 +1,8 @@
-package lu.snt.serval.lms.dao;
+package lu.snt.serval.lms.backend.dao;
 
-import lu.snt.serval.lms.dao.dto.PersonnelAccountDTO;
-import lu.snt.serval.lms.dao.dto.UserDTO;
-import lu.snt.serval.lms.dao.spec.PersonnelAccountDAOInterface;
+import lu.snt.serval.lms.backend.dto.PersonnelAccountDTO;
+import lu.snt.serval.lms.backend.dto.UserDTO;
+import lu.snt.serval.lms.backend.spec.PersonnelAccountDAOInterface;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -107,5 +107,34 @@ public class PersonnelAccountDAO implements PersonnelAccountDAOInterface {
          String query = "DELETE FROM personnel_account WHERE id_personnel_account = ?";
          
          this.jdbcTemplate.update(query, new Object[]{ new Integer(personnelAccountDTO.getId_personnel_account()) });
+    }
+
+    public void setFromDTO(PersonnelAccountDTO dto) {
+        PersonnelAccountDTO personnelAccountDTO;
+
+        personnelAccountDTO = (PersonnelAccountDTO) dto;
+
+        setActive(personnelAccountDTO.getActive() == 1);
+        setCanConsultBorrowerAccount(personnelAccountDTO.getCan_consult() == 1);
+        setPersonnelAccountID(personnelAccountDTO.getId_personnel_account());
+
+        setCreationDate(personnelAccountDTO.getCreation_date());
+
+        setUserID(personnelAccountDTO.getId_user());
+
+    }
+
+    public PersonnelAccountDTO getDTO() {
+        PersonnelAccountDTO personnelAccountDTO;
+
+        personnelAccountDTO = new PersonnelAccountDTO();
+        personnelAccountDTO.setActive(isActive() ? 1: 0);
+        personnelAccountDTO.setCan_consult(isCanConsultBorrowerAccount ? 1: 0);
+        personnelAccountDTO.setCreation_date(getCreationDate());
+        personnelAccountDTO.setId_personnel_account(personnelAccountID);
+        personnelAccountDTO.setId_user(userID);
+
+        return personnelAccountDTO;
+
     }
 }

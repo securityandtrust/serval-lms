@@ -1,8 +1,8 @@
-package lu.snt.serval.lms.dao.spec;
+package lu.snt.serval.lms.backend.spec;
 
-import lu.snt.serval.lms.dao.DAOException;
-import lu.snt.serval.lms.dao.dto.BorrowerAccountDTO;
-import lu.snt.serval.lms.dao.dto.UserDTO;
+import lu.snt.serval.lms.backend.dao.DAOException;
+import lu.snt.serval.lms.backend.dto.BorrowerAccountDTO;
+import lu.snt.serval.lms.backend.dto.UserDTO;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +17,7 @@ public interface BorrowerAccountDAOInterface {
      * @param userDTO the user
      * @return the borrowerAccount
      * @throws java.sql.SQLException if any sql problem
-     * @throws lu.snt.serval.lms.dao.DAOException if ant DAO problem (not entry found)
+     * @throws lu.snt.serval.lms.backend.dao.DAOException if ant DAO problem (not entry found)
      */
     BorrowerAccountDTO loadUserBorrowerAccount(UserDTO userDTO) throws SQLException, DAOException;
 

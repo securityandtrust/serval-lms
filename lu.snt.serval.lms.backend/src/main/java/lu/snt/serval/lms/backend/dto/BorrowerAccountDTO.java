@@ -1,24 +1,25 @@
-package lu.snt.serval.lms.dao.dto;
+package lu.snt.serval.lms.backend.dto;
 
 
 import java.util.Date;
 
 
-public class PersonnelAccountDTO {
-    private int id_personnel_account,active,can_consult,id_user;
+public class BorrowerAccountDTO {
+
+    private int id_borrower_account, active, can_borrow, id_user;
 
     private Date creation_date;
 
 
-    public PersonnelAccountDTO() {
+    public BorrowerAccountDTO() {
     }
 
-    public int getId_personnel_account() {
-        return id_personnel_account;
+    public int getId_borrower_account() {
+        return id_borrower_account;
     }
 
-    public void setId_personnel_account(int id_personnel_account) {
-        this.id_personnel_account = id_personnel_account;
+    public void setId_borrower_account(int id_borrower_account) {
+        this.id_borrower_account = id_borrower_account;
     }
 
     public int getActive() {
@@ -29,12 +30,12 @@ public class PersonnelAccountDTO {
         this.active = active;
     }
 
-    public int getCan_consult() {
-        return can_consult;
+    public int getCan_borrow() {
+        return can_borrow;
     }
 
-    public void setCan_consult(int can_consult) {
-        this.can_consult = can_consult;
+    public void setCan_borrow(int can_borrow) {
+        this.can_borrow = can_borrow;
     }
 
     public int getId_user() {
@@ -44,7 +45,6 @@ public class PersonnelAccountDTO {
     public void setId_user(int id_user) {
         this.id_user = id_user;
     }
-
 
     public Date getCreation_date() {
         return creation_date;

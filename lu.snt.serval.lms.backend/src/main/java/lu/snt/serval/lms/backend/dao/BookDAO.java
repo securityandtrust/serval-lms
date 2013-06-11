@@ -1,9 +1,9 @@
-package lu.snt.serval.lms.dao;
+package lu.snt.serval.lms.backend.dao;
 
 
-import lu.snt.serval.lms.dao.dto.BookDTO;
-import lu.snt.serval.lms.dao.dto.UserDTO;
-import lu.snt.serval.lms.dao.spec.BookDAOInterface;
+import lu.snt.serval.lms.backend.dto.BookDTO;
+import lu.snt.serval.lms.backend.dto.UserDTO;
+import lu.snt.serval.lms.backend.spec.BookDAOInterface;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 

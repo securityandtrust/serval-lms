@@ -1,4 +1,4 @@
-package lu.snt.serval.lms.dao.dto;
+package lu.snt.serval.lms.backend.dto;
 
 import javax.persistence.*;
 

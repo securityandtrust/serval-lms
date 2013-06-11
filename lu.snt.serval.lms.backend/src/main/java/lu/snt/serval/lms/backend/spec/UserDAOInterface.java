@@ -1,9 +1,9 @@
-package lu.snt.serval.lms.dao.spec;
+package lu.snt.serval.lms.backend.spec;
 
 
-import lu.snt.serval.lms.dao.DAOException;
-import lu.snt.serval.lms.dao.dto.BookDTO;
-import lu.snt.serval.lms.dao.dto.UserDTO;
+import lu.snt.serval.lms.backend.dto.BookDTO;
+import lu.snt.serval.lms.backend.dao.DAOException;
+import lu.snt.serval.lms.backend.dto.UserDTO;
 
 import java.sql.SQLException;
 import java.util.Collection;
