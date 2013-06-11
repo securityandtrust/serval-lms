@@ -1,4 +1,4 @@
-package lu.snt.serval.lms.service.exception;
+package lu.snt.serval.lms.framework.exceptions;
 
 
 public class BSException extends Exception {
